@@ -23,16 +23,34 @@ let newRecipe = {
   creator: "Chef Jennifer"
 }
 
-// Recipe.create(newRecipe)
-// .then(result=>console.log(`recipe created: ${result.title}`))
-// .catch(err => console.log(err)) 
-
-
-Recipe.insertMany(data)
-.then(result => {
-  result.forEach(recipe=>console.log(`${recipe.title} added`))
+Recipe.create(newRecipe)
+.then(result=>{
+  console.log(`recipe created: ${result.title}`)
+  mongoose.connection.close()
 })
-.catch(err=> console.log(err))
+.catch(err => console.log(err)) 
+
+
+// Recipe.insertMany(data)
+// .then(result => {
+//   result.forEach(recipe=>console.log(`${recipe.title} added`))
+//   mongoose.connection.close()
+// })
+// .catch(err=> console.log(err))
+
+// let query = {title: "Rigatoni alla Genovese"}
+// Recipe.findOneAndUpdate(query, {duration: 100})
+// .then(() => {console.log("recipe updated")
+//   mongoose.connection.close()
+//  })
+// .catch(err=>console.log(error))
+
+// Recipe.deleteOne({title: "Chocolate Chip Cookies"})
+// .then(()=>{
+//  console.log("deleted successfully")
+//   mongoose.connection.close()
+//  })
+// .catch((err) => console.log(err))
 
 // Connection to the database "recipe-app"
 mongoose
@@ -42,4 +60,5 @@ mongoose
   })
   .catch(error => {
     console.error('Error connecting to the database', error);
-  });
+  })
+  
